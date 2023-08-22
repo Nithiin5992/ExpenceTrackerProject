@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <h1>Expence Tracker</h1>
+</head>
+
+<body>
+
+
+    <ul class="expence_tracker" id="expence_tracker">
+        <label>Choose Expenceamount</label>
+        <input type="number" id="expenceamount" name="expenceamount">
+        <label>Description</label>
+        <input type=text id="description" name="description">
+        <label>Choose a category</label>
+        <input type=textpwd id="category" name="category">
+        <button onclick="submit()">addExpence</button>
+        <div id="premiumbutton" class="premiumbutton">
+            <br><button id="rzp_button1">BuyPremium</button></br>
+        </div>
+        <button id="Download" class="Download" onclick="downloadexpences()">Download Expences</button>
+
+        <h2 class="expence" id="expence">Expences:</h2>
+        <ul class="rowsrange" id="rowsrange">
+            <label>rowsrange</label>
+            <input type="number" id="rows" class="rows">
+            <button onclick="rowrange()">Ok</button>
+        </ul>
+        <br></br>
+        <ul class="expences" id="expences"></ul>
+
+        <h2 class="Leaderboard" id="Leaderboard">LeaderBoard:</h2>
+        <h2 class="daily expence" id="daily expence">Daily Expences:</h2>
+        <h2 class="monthly expence" id="monthlyexpence">Monthly Expences:</h2>
+        <h2 class="yearly expence" id="yearly expence">Yearly Expences:</h2>
+
+    </ul>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js"></script>
+
+    <script src="dailyexpence.js"></script>
+
+</body>
+
+</html>
