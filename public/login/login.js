@@ -13,7 +13,7 @@ function postuser(newuser) {
   axios.post("http://localhost:4000/user/login", newuser)
     .then(responce => {
       alert(responce.data.message);
-      window.location.href = "C:\Users\Nithin kumar\Desktop\Nithin\.vscode\Expence Tracker Project Backend\public\dailyexpence\dailyexpence.html"
+      window.location.href ="../dailyexpence/dailyexpence.html"
       localStorage.setItem('token', responce.data.token)
       localStorage.setItem('premiumuser', responce.data.premiumuser)
     })
