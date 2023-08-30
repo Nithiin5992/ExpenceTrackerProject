@@ -38,7 +38,7 @@ app.use(passwordroutes);
 //app.use(downloadroutes);
 app.use((req,res)=>{
     
-   res.sendFile(path.join(__dirname,'public',req.url))
+   res.sendFile(path.join(__dirname, 'public',req.url))
 })
 User.hasMany(Expence);
 Expence.belongsTo(User);

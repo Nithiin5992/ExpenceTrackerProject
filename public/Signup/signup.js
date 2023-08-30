@@ -16,10 +16,11 @@ function submit() {
   }
 }
 function postuser(newuser) {
-  axios.post("http://localhost:4000/user/signup", newuser)
+  axios.post("http://3.95.70.131:3000/user/signup", newuser)
     .then(responce => {
       console.log(responce);
       alert(responce.data.message);
+      window.location.href ="http://3.95.70.131:3000/login/login.html"
 
     })
     .catch((err) => {

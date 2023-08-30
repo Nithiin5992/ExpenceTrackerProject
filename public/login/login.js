@@ -10,10 +10,10 @@ function submit() {
   postuser(obj);
 }
 function postuser(newuser) {
-  axios.post("http://localhost:4000/user/login", newuser)
+  axios.post("http://3.95.70.131:3000/user/login", newuser)
     .then(responce => {
       alert(responce.data.message);
-      window.location.href ="../dailyexpence/dailyexpence.html"
+      window.location.href ="http://3.95.70.131:3000/dailyexpence/dailyexpence.html"
       localStorage.setItem('token', responce.data.token)
       localStorage.setItem('premiumuser', responce.data.premiumuser)
     })
@@ -29,5 +29,5 @@ function forgotpassword(){
     email
   }
   const token = localStorage.getItem('token');
-  axios.post('http://localhost:4000/password/forgotpassword',obj,{ headers: { 'authorization': token } })
+  axios.post('http://3.95.70.131:3000/password/forgotpassword',obj,{ headers: { 'authorization': token } })
 }
