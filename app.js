@@ -11,7 +11,7 @@ const Forgotpassword=require("./models/forgotpassword");
 const downloadedurl=require("./models/downloadedurl");
 
 const cors = require('cors');
-const helmet=require('helmet')
+
 const morgan=require('morgan')
 const accesslogstream=fs.createWriteStream('access.log',{flags:'a'})
 const compression=require('compression')
@@ -24,7 +24,7 @@ const premiumroutes = require('./routes/premium');
 const passwordroutes=require('./routes/forgotpassword');
 const downloadroutes=require('./routes/download')
 
-app.use(helmet());
+
 app.use(compression());
 app.use(morgan('combined',{stream:accesslogstream}))
 app.use(bodyParser.json({ extended: false }));
