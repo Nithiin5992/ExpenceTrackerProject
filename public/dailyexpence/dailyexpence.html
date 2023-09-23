@@ -5,13 +5,13 @@
     <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;">
     <h1 style="color: rgb(127, 240, 45);">Expence Tracker</h1>
 </head>
- 
+
 
 <body style="color: aquamarine;">
 
 
     <ul class="expence_tracker" id="expence_tracker">
-        <label >Choose Expenceamount</label>
+        <label>Choose Expenceamount</label>
         <input type="number" id="expenceamount" name="expenceamount">
         <label>Description</label>
         <input type=text id="description" name="description">
@@ -21,18 +21,20 @@
         <div id="premiumbutton" class="premiumbutton">
             <br><button id="rzp_button1" style="color: rgb(6, 3, 10);">BuyPremium</button></br>
         </div>
-            <br><button id="Download" class="Download" style="color: rgb(9, 1, 17);" onclick="downloadexpences()">Download Expences</button></ul></br>
+        <br><button id="Download" class="Download" style="color: rgb(9, 1, 17);" onclick="downloadexpences()">Download
+            Expences</button>
+    </ul></br>
 
-        <h2 class="expence" id="expence">Expences:</h2>
-        <ul class="rowsrange" id="rowsrange">
-            <label>rowsrange</label>
-            <input type="number"  id="rows" class="rows" >
-            <button onclick="rowrange()" style="color: blueviolet;" >Ok</button>
-        </ul>
-        <br></br>
-        <ul class="expences" id="expences"></ul>
+    <h2 class="expence" id="expence">Expences:</h2>
+    <ul class="rowsrange" id="rowsrange">
+        <label>rowsrange</label>
+        <input type="number" id="rows" class="rows">
+        <button onclick="rowrange()" style="color: blueviolet;">Ok</button>
+    </ul>
+    <br></br>
+    <ul class="expences" id="expences"></ul>
 
-       
+
 
     </ul>
 
