@@ -3,8 +3,8 @@ const Order = require("../models/order")
 exports.purchasepremium = async (req, res, next) => {
     try {
         var rzp = new Razorpay({
-            key_id: 'rzp_test_qzEZmlvTk3Qwpc',
-            key_secret: 'SCgdTb1LgTy6UwFc1fZV1OuK'
+            
+            
         })
         const amount = 2500;
         rzp.orders.create({ amount, currency: "INR" }, (err, order) => {
@@ -13,7 +13,7 @@ exports.purchasepremium = async (req, res, next) => {
             }
 
             Order.create({
-                orderid: order.id,
+                orderid : order.id ,
                 status: 'pending',
                 userId: req.userid
             }).then(() => {

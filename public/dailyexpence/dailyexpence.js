@@ -32,7 +32,7 @@ function submit() {
 }
 function getexpence(token, i) {
   let rows = localStorage.getItem('rows')
-  axios.get("http://localhost:3000/dailyexpence", { headers: { 'authorization': token } })
+  axios.get("http://3.95.70.131:3000/dailyexpence", { headers: { 'authorization': token } })
     .then((responce) => {
       let count = 0;
       var expencelist = document.createElement('expencelist');
@@ -44,11 +44,11 @@ function getexpence(token, i) {
           createbutton(expencelist, 'NextPage', 'NextPage');
           NextPage.onclick = function () {
             expence.removeChild(expencelist);
-           
+
             const token = localStorage.getItem('token');
             getexpence(token, i)
             createbutton(expencelist, 'PreviousPage', 'PreviousPage');
-            
+
           }
 
           break;
@@ -66,12 +66,12 @@ function getexpence(token, i) {
 function postexpence(dailyexpence) {
   const token = localStorage.getItem('token');
   var expencelist = document.createElement('expencelist');
-  axios.post("http://localhost:3000/dailyexpence", dailyexpence, { headers: { 'authorization': token } })
+  axios.post("http://3.95.70.131:3000/dailyexpence", dailyexpence, { headers: { 'authorization': token } })
     .then(responce => {
       console.log(responce)
       showuseronscreen(responce, expencelist)
       alert(responce.data.message)
-      
+
     })
     .catch((err) => {
       console.log(err)
@@ -97,26 +97,26 @@ function removeexpence(e) {
     if (confirm('Are You Sure?')) {
       let li = e.target.parentElement;
 
-      axios.delete("http://localhost:3000/dailyexpence/" + li.id)
+      axios.delete("http://3.95.70.131:3000/dailyexpence/" + li.id)
 
     }
   }
 }
 document.getElementById('rzp_button1').onclick = async function (e) {
   const token = localStorage.getItem('token')
-  const responce = await axios.get("http://localhost:3000/purchase/purchasepremium", { headers: { 'authorization': token } })
+  const responce = await axios.get("http://3.95.70.131:3000/purchase/purchasepremium", { headers: { 'authorization': token } })
   console.log(responce)
 
   var options = {
     "key": responce.data.key_id,
     "orderid": responce.data.order.id,
     "handler": async function (responce) {
-      await axios.post("http://localhost:3000/purchase/updatetransactionstatus", {
+      await axios.post("http://3.95.70.131:3000/purchase/updatetransactionstatus", {
         order_id: options.orderid,
         payment_id: responce.rozarpay_payment_id
       }, { headers: { 'authorization': token } })
       alert("you are a premium user now")
-      localStorage.updateItem('premiumuser', 'true')
+      window.location.href = "http://3.95.70.131:3000/dailyexpence/dailyexpencepremium.html"
       updatepremiumuser();
     }
   }
@@ -128,27 +128,19 @@ document.getElementById('rzp_button1').onclick = async function (e) {
 
   })
 }
-function updatepremiumuser() {
-  var premiumbutton = document.getElementById('rzp_button1')
-  var li = premiumbutton.parentElement;
-  li.replaceChild(document.createTextNode('you are a premium user'), premiumbutton);
-  createbutton(li, 'LeaderBoard', 'LeaderBoard')
-  createbutton(li, 'dailyexpence', 'dailyexpence')
-  createbutton(li, 'MonthlyExpence', 'MonthlyExpence')
-  createbutton(li, 'YearlyExpence', 'YearlyExpence')
-  const parent = li;
-  LeaderBoard.onclick = async function (e) {
-    await axios.get("http://localhost:3000/premium/leaderboard")
-      .then(responce => {
-        console.log(responce)
-        for (let i = 0; i < responce.data.length; i++) {
-          var li = document.createElement('li')
-          li.appendChild(document.createTextNode('Name:' + responce.data[i].username + '-TotalExpence:' + responce.data[i].totalexpence))
-          parent.appendChild(li)
-        }
-      }).catch((err) => console.log(err))
-  }
+function LeaderBoard() {
+  var leaderboard = document.getElementById('leaderboard')
+  axios.get("http://3.95.70.131:3000/premium/leaderboard")
+    .then(responce => {
+      console.log(responce)
+      for (let i = 0; i < responce.data.length; i++) {
+        var li = document.createElement('li')
+        li.appendChild(document.createTextNode('Name:' + responce.data[i].username + '-TotalExpence:' + responce.data[i].totalexpence))
+        leaderboard.appendChild(li)
+      }
+    }).catch((err) => console.log(err))
 }
+
 
 function createbutton(li, button, id) {
   var newbutton = document.createElement('button');
@@ -160,7 +152,7 @@ function createbutton(li, button, id) {
 
 function downloadexpences() {
   const token = localStorage.getItem('token')
-  axios.get("http://localhost:3000/downloadexpence", { headers: { 'authorization': token } })
+  axios.get("http://3.95.70.131:3000/downloadexpence", { headers: { 'authorization': token } })
     .then(responce => {
       var a = document.createElement('a');
       a.href = responce.data.fileurl;
